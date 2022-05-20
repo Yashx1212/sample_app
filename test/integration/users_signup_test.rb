@@ -15,7 +15,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/new'
-    assert_not flash.FILL_IN
+    asset is_logged_in?
   end
 
 end
