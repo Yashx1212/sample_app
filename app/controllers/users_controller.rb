@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
     # debugger
-    redirect_to root_url and return unless FILL_IN
+    ######## Doubt here ############
+    redirect_to root_url and return unless logged_in? 
   end
 
   def create
