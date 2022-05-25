@@ -9,10 +9,9 @@ class UsersController < ApplicationController
   end
 
   def show 
-    @user = User.find(params[:id])
-    # debugger
-    ######## Doubt here ############
     redirect_to root_url and return unless logged_in? 
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def create
