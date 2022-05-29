@@ -1,0 +1,9 @@
+
+<% (@user.bookmarklists).each do |bookmark|%>
+<% if bookmark.id %>
+<li id="bookmark-<%= bookmark.id %>">
+    <span class="name"><%= link_to bookmark.name , '#' %></span>
+    <%= link_to "delete" , bookmark, method: :delete , data: {confirm: "Are you sure?"} %></span>
+</li>
+<% end %>
+<% end %>

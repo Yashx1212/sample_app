@@ -69,6 +69,12 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def bookmarklists
+    @user = User.find(params[:id])
+    @bookmarklist = @user.bookmarklists.build
+    render 'show_bookmark_list'
+  end
+
   private
     def user_params
       params.fetch(:user ,{}).permit(:name, :email, :password, :password_confirmation => {})
