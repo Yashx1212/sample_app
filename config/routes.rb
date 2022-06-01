@@ -12,7 +12,13 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers, :bookmarklists
+      get :following, :followers, :bookmarklists , :savedposts
+    end
+  end
+
+  resources :users do 
+    resources :bookmarklists do 
+      get :savedposts
     end
   end
 
@@ -21,4 +27,5 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :bookmarklists, only: [:create , :destroy]
+  resources :savedposts, only: [:create , :destroy]
 end

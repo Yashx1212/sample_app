@@ -1,0 +1,50 @@
+
+<div class="dropdown float-r micropost-logo-<%= micropost.id%>">
+    <% unless @bookmarklist.present? %>
+        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%if current_user.savedposts.where(micropost_id: micropost.id).present? %>
+                <i class="bi bi-bookmark-check-fill float-r"></i>
+            <% else %>
+                <i class="bi bi-bookmark float-r"></i>
+            <% end %>
+        </button>
+        <ul class="dropdown-menu savedpost-dropdown" >
+            <% (current_user.bookmarklists).each do |bookmark|%>
+                <% if bookmark.id %>
+                    <li id="bookmark-<%= bookmark.id %>">
+                        <%= form_with(model: current_user.savedposts.build , local: false) do |f|%>
+                        <%= hidden_field_tag :micropost_id, micropost.id %>
+                        <%= hidden_field_tag :bookmarklist_id, bookmark.id%>
+                        <%= hidden_field_tag :user_id, current_user.id%>
+                            <% if @feed_to_bookmarklist_ids_map[micropost.id].include?(bookmark.id)%>
+                            
+                                <%= button_tag( :class => "submit") do %>
+                                    <%= bookmark.name%> <i class="bi bi-bookmark-check-fill float-r"></i>
+                                <% end %>
+                            <%else%>
+                                <%= button_tag( :class => "submit") do %>
+                                    <%= bookmark.name%> <i class="bi bi-bookmark float-r"></i>
+                                <% end %>
+                            <% end %> 
+                        <% end %>       
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>
+    <%else%>
+        <%= form_with(model: current_user.savedposts.build , local: true) do |f|%>
+        <%= hidden_field_tag :micropost_id, micropost.id %>
+        <%= hidden_field_tag :bookmarklist_id, @bookmarklist.id%>
+        <%= hidden_field_tag :user_id, current_user.id%>
+            <% if @feed_to_bookmarklist_ids_map[micropost.id].include?(@bookmarklist.id)%>
+                <%= button_tag( :class => "submit") do %>
+                    <i class="bi bi-bookmark-check-fill float-r"></i>
+                <% end %>
+            <%else%>
+                <%= button_tag( :class => "submit") do %>
+                    <i class="bi bi-bookmark float-r"></i>
+                <% end %>
+            <% end %> 
+        <% end %>
+    <% end %>
+</div>

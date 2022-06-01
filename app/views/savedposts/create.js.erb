@@ -1,0 +1,2 @@
+<% content = render(partial: 'microposts/micropost_bookmark_content' , locals: {micropost: @micropost}) %>
+$(".micropost-logo-<%= @micropost.id %>").replaceWith("<%= escape_javascript content %>")

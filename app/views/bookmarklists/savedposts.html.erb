@@ -1,0 +1,12 @@
+<h1><%= @bookmarklist.name %></h1>
+<hr>
+<% unless @savedposts.empty? %>
+    <% @savedposts.each do |savepost_relation| %>
+        <% micropost = savepost_relation.micropost %>
+        <ol class="microposts">
+        <%= render partial: 'microposts/micropost' , locals: {micropost: micropost}%>
+        </ol>
+    <% end %>
+<% else %>
+    <h4 class="center">No savedposts to show</h4>
+<% end %>

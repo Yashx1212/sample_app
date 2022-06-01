@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :bookmarklists]
+  before_action :correct_user,   only: [:edit, :update, :bookmarklists]
   before_action :admin_user,     only: :destroy
 
   def new
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     redirect_to root_url and return unless logged_in? 
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    bookmarked_posts(@microposts)
   end
 
   def create
@@ -19,12 +20,14 @@ class UsersController < ApplicationController
     #@user.send_activation_email
     if @user.save
       # Handle a successful save.
-      UserMailer.account_activation(@user).deliver_now
-      flash[:info] = "Please check your email to activate your account."
+      bookmarklist = @user.bookmarklists.new
+      bookmarklist.name = "Favourites"
+      bookmarklist.deletable = false
+      bookmarklist.save 
+      # UserMailer.account_activation(@user).deliver_now
+      # flash[:info] = "Please check your email to activate your account."
+      log_in user
       redirect_to root_url
-      # log_in @user
-      # flash[ :success] = "Welcome to the Sample App !"
-      # redirect_to @user
     else
       render 'new'
     end 

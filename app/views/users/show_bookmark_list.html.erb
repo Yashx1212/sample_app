@@ -1,5 +1,10 @@
 <% provide(:title ,'Bookmark lists')%>
-<%= render 'bookmarklists/bookmark_form' %>
-<ul class="bookmarklist">
-    <%= render partial: 'bookmarklists/bookmarklist' , locals: {bookmarklist: @bookmarklist} %>
-</ul>
+
+<div class = "left container">
+    <h1>Bookmarks</h1>
+    <%= render partial: 'bookmarklists/bookmarklist' , id: "#bookmarks" ,locals: {bookmarklist: @bookmarklist}  %>
+</div>
+
+<div class="right container">
+    <%= render 'bookmarklists/bookmark_form' %>
+</div>

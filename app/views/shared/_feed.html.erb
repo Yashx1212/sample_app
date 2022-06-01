@@ -3,4 +3,7 @@
 <%= render @feed_items %>
 </ol>
 <%= will_paginate @feed_items, params: { controller: :static_pages, action: :home } %>
+<% else %>
+No posts to show, 
+<%= link_to " Browse", users_path %> users and follow for more posts.
 <% end %>

@@ -1,9 +1,24 @@
-
 <% (@user.bookmarklists).each do |bookmark|%>
-<% if bookmark.id %>
-<li id="bookmark-<%= bookmark.id %>">
-    <span class="name"><%= link_to bookmark.name , '#' %></span>
-    <%= link_to "delete" , bookmark, method: :delete , data: {confirm: "Are you sure?"} %></span>
-</li>
-<% end %>
+    <% if bookmark.id %>
+        <li class="list-group-item border-bottom" id="bookmark-<%= bookmark.id %>">
+            <span class="bookmarkname float-l">
+                <strong><%= link_to bookmark.name , user_bookmarklist_savedposts_path(:user_id => current_user.id , :bookmarklist_id => bookmark.id) %></strong>
+            </span>
+            <span class="bookmark-length">
+                Posts : <%= bookmark.microposts.length%>
+            </span>
+            <% if bookmark.deletable? %>
+                <%= link_to bookmark, method: :delete, class: "text-danger pull-right" ,data: { confirm: "You sure?" }  do%>
+                    <i class="bi bi-trash mr-05"></i>
+                <% end %>
+            <% end %>
+            <span class="float-r m-1vw">
+                <% if bookmark.savedposts.empty?%>
+                    created <%= time_ago_in_words(bookmark.created_at)%> ago
+                <% else %>
+                    last updated <%= time_ago_in_words(bookmark.savedposts.last.created_at)%> ago
+                <% end %>
+            </span>
+        </li>
+    <% end %>
 <% end %>

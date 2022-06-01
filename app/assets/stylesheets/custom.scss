@@ -7,7 +7,7 @@ $gray : #555;
 $gray-darker : #222 ;
 
 body {
-    padding-top: 60px;
+    padding-top: 80px;
 }
 
 section {
@@ -101,11 +101,9 @@ footer {
 }
 
 @mixin box_sizing {
-    -moz-box-sizing:
-    border-box;
+    -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing:
-    border-box;
+    box-sizing: border-box;
 }
 
 .debug_dump {
@@ -264,8 +262,9 @@ input {
     margin: 0;
     li {
         overflow: auto;
-        padding: 10px 0;
-        border-bottom: 1px solid $gray-lighter;
+        padding: 10px 20px;
+        border-bottom: 2px solid $gray-lighter;
+        border-radius: 10px;
     }
 }
 
@@ -274,9 +273,15 @@ input {
     list-style: none;
     padding: 0;
     
-    li {
-        padding: 10px 0;
-        border-top: 1px solid #e8e8e8;
+    .post-li {
+        padding: 10px 10px;
+        border-bottom: 1px solid #e8e8e8;
+        border-radius: 12px;
+        a{
+            .gravatar{
+                border-radius: 10px;
+            }
+        }
     }
     
     .user {
@@ -293,17 +298,26 @@ input {
         }
     }
     
-    .timestamp {
-        color: $gray-light;
-        display: block;
-        margin-left: 60px;
-    }
-
+    
     .gravatar {
         float: left;
         margin-right: 10px;
         margin-top: 5px;
     }
+    .dropdown{
+        display:inline;
+        .dropdown-toggle{
+            border: none;
+            background-color: whitesmoke;
+        }
+    }
+    margin: 0vh 1vw;
+}
+
+.timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
 }
 
 aside {
@@ -318,4 +332,177 @@ span.image {
     input {
         border: 0;
     }
+}
+
+.text-danger{
+    color:#494545b9;
+}
+
+.list-group-item{
+    border: none;
+    text-align: left;
+}
+
+.bookmarklist , .bookmarklist-form{
+    margin: 0 25vw;
+}
+
+.marked{
+    background-color: rgb(63, 63, 63);
+}
+
+.homepage-background{
+    width:fit-content;
+}
+
+.home{
+    position: relative;
+    height: 80vh;
+    background-color: #c0d1e4;
+    border-radius: 25vh !important ;
+}
+
+.absolute-center-top{
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%, 20px);
+}
+
+.absolute-center-bottom{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -8%);
+}
+
+.logo{
+    margin-right: 1vw;
+    width: 7vh;
+}
+
+#logo{
+    text-transform: none;
+}
+
+.about{
+    text-align:justify;
+    margin: 5vh auto;
+    section{
+        background-color: #c0d1e4;
+        border-radius: 25vh;
+        padding: 6vh 12vw;
+    }
+    p , h4{
+        margin: 2vh 5vw;
+    }
+}
+.signup{
+    padding: 5vh 17vw 15vh 17vw;
+    background-color: #c0d1e4;
+    border-radius: 25vw;
+}
+
+.signup-image{
+    position: absolute;
+    top: 24vh;
+    left: 7vw;
+    width: 30vw;
+}
+
+.login{
+    margin: 0 20vw;
+    padding: 5vh 7vw 10vh 7vw;
+    background-color: #c0d1e4;
+    border-radius: 25vw;
+}
+
+.savedpost-dropdown{
+    border: none;
+    margin-top: 4px;
+    padding: 0px;
+    transform: translate(-5vw,0);
+    li{
+        padding: none;
+        border: none;
+        form{
+            .submit{
+                padding: 0px 1px;
+                text-align: left;
+                margin: 0px;
+                width: -webkit-fill-available;
+                border: none;
+            }
+        }
+    }
+}
+
+.float-r{
+    float: right;
+}
+
+.float-l{
+    float: left;
+}
+
+.mr-05{
+    margin-right: 0.5vw;
+}
+
+.right{
+    padding: 1vh;
+    width: 36%;
+    float: right;
+}
+
+.left{
+    padding: 1vh;
+    float: left;
+    width: 60%;   
+    border-right: 1px solid #bbb;
+    h1{
+        display: inline-block;
+        margin-left: 18vw;
+        margin-top: 1vh;
+        padding: 8px;
+        border-radius: 3px;
+        margin-bottom: 1px;
+        font-weight: bold;
+    }
+    li{
+        border: 0.5px solid #bbb;
+        margin: 2vh;
+    }
+}
+
+.border-bottom{
+    border-bottom: 1px;
+}
+
+.bookmark-length{
+    color: rgb(14, 9, 9);
+}
+
+.width-50{
+    width: 70%;
+}
+
+.grey{
+    background-color: $gray-lighter;
+}
+
+.m-1vw{
+    margin: 0 1%;
+}
+
+.bookmarkname{
+    width: 200px;
+}
+
+.footer{
+    position:fixe;
+}
+
+.width-100px{
+    width: 100px;
 }

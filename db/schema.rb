@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_27_102359) do
+ActiveRecord::Schema.define(version: 2022_06_01_083253) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_05_27_102359) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "deletable", default: true
     t.index ["user_id", "created_at"], name: "index_bookmarklists_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_bookmarklists_on_user_id"
   end
@@ -69,11 +70,14 @@ ActiveRecord::Schema.define(version: 2022_05_27_102359) do
   end
 
   create_table "savedposts", force: :cascade do |t|
-    t.string "name"
     t.integer "user_id", null: false
+    t.integer "bookmarklist_id", null: false
+    t.integer "micropost_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "created_at"], name: "index_savedposts_on_user_id_and_created_at"
+    t.index ["bookmarklist_id"], name: "index_savedposts_on_bookmarklist_id"
+    t.index ["micropost_id"], name: "index_savedposts_on_micropost_id"
+    t.index ["user_id", "bookmarklist_id"], name: "index_savedposts_on_user_id_and_bookmarklist_id"
     t.index ["user_id"], name: "index_savedposts_on_user_id"
   end
 
@@ -97,5 +101,7 @@ ActiveRecord::Schema.define(version: 2022_05_27_102359) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarklists", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "savedposts", "bookmarklists"
+  add_foreign_key "savedposts", "microposts"
   add_foreign_key "savedposts", "users"
 end

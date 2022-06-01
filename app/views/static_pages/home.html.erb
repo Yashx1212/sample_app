@@ -16,22 +16,24 @@
             </section>
         </aside>
         <div class="col-md-8">
-            <h3>Micropost Feed</h3>
+            <h3>WhatsUp!</h3>
             <%= render 'shared/feed' %>
         </div>
     </div>
 
 <% else %>
 
-    <div class="center jumbotron">
-        <h1>Welcome to the Sample App</h1>
+    <div class="center jumbotron home">
+        <%= image_tag("home_background.png", alt: "logo" , class:"homepage-background") %>
+        <span class="absolute-center-top">
+        <h1>WeShare</h1>
         <h2>
-            This is the home page for the
-            <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-            sample application.
+           We beleive in sharing experiences without being judged.
         </h2>
-        <%= link_to "Sign up now!", signup_path , class: "btn btn-lg btn-primary" %>
+        </span>
+        <span class="absolute-center-bottom">
+        <%= link_to "Sign up now!", signup_path , class: "btn btn-md btn-success" %>
+        </span>
     </div>
-    <%= link_to image_tag("rails.svg", alt: "Rails logo", width: "200"),"https://rubyonrails.org/" %>
 
 <% end %>

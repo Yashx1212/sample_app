@@ -14,6 +14,13 @@ User.create!(name: "Example User",  email: "example@railstutorial.org",
                                     activated: true,
                                     activated_at: Time.zone.now)
 
+User.create!(name: "Benedict",  email: "benedict@gmail.com",
+                                    password: "foobarzz",
+                                    password_confirmation: "foobarzz",
+                                    admin: true,
+                                    activated: true,
+                                    activated_at: Time.zone.now)
+
 
     # Generate a bunch of additional users.
 99.times do |n|
@@ -28,7 +35,7 @@ User.create!(name: "Example User",  email: "example@railstutorial.org",
 end
 
 
-users = User.order(:created_at).take(6)
+users = User.order(:created_at).take(8)
 
 50.times do
     content = Faker::Lorem.sentence(word_count: 5)
@@ -42,3 +49,15 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+user = users[1]
+following = users[3..50]
+followers = users[4..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+users = User.all
+
+users.each { |user| 
+    bookmarklist = user.bookmarklists.create!(name: "Favourites" , deletable: false)
+}
